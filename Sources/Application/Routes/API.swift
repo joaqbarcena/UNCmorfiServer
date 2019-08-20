@@ -18,6 +18,7 @@ class APIRouter {
         router.get("/users", handler: getUsers)
         router.get("/menu", handler: getMenu)
         router.get("/servings", handler: getServings)
+        router.get("/reservation", handler: getReservation)
     }
 
     // MARK: - Handlers
@@ -59,6 +60,24 @@ class APIRouter {
                 callback(nil, nil)
             }
 
+        }
+    }
+    
+    //MARK: Reservation Feature
+    
+    private struct ReservationParams : QueryParams {
+        let code:String
+    }
+    
+    private static func getReservation(queryParams:ReservationParams, callback: @escaping (ReservationStatusWrapper?, RequestError?) -> Void){
+        UNCComedor.api.getReservation(of: queryParams.code){
+            result in
+            switch result {
+            case let .success(reservation):
+                callback(ReservationStatusWrapper(reservationStatus: reservation),nil)
+            case .failure(_):
+                callback(nil,nil)
+            }
         }
     }
 }
