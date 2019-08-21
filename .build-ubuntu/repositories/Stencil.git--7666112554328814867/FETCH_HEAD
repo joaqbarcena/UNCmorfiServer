@@ -1,0 +1,251 @@
+d6a465e188c3065ccc7640f53b239182a781b506	not-for-merge	branch 'array-enumeration' of https://github.com/kylef/Stencil
+0e6d3c02c09e1bbf5596712bb048d96854d17d10	not-for-merge	branch 'blocks-cache' of https://github.com/kylef/Stencil
+9cb7c6b8a9990af6238badfe3a81f3bc0f88c958	not-for-merge	branch 'break-continue' of https://github.com/kylef/Stencil
+5819c29abf7a98ae8649c7e6db0aee334242ba4e	not-for-merge	branch 'dynamic-member-lookup' of https://github.com/kylef/Stencil
+7593790049be3ae2f4abf043aaf67ac0a13bedf8	not-for-merge	branch 'filter-shorthand' of https://github.com/kylef/Stencil
+68a791c993eb111536f5889d90c1a1ce1c10b63f	not-for-merge	branch 'fix-block-super' of https://github.com/kylef/Stencil
+65e738764b824bdeee5de6a2d3324c3b2eb31dbb	not-for-merge	branch 'for-loop-spaces-fix' of https://github.com/kylef/Stencil
+6331dc34f7498e88c7b080b36cc09252f9288040	not-for-merge	branch 'ios' of https://github.com/kylef/Stencil
+d8d490d574f7ffdd191add1f3f7c1e8747764d1c	not-for-merge	branch 'kylef/autoescape' of https://github.com/kylef/Stencil
+accb80d457a77d4b421661dca1039aee2477225b	not-for-merge	branch 'kylef/sourcemaps' of https://github.com/kylef/Stencil
+e666ece0bdcb3712f5151d9aa2ba37b988472734	not-for-merge	branch 'kylef/swift-3.0' of https://github.com/kylef/Stencil
+df650c6b204c5002241e0e94d36e5338d6fa7685	not-for-merge	branch 'kylef/swim' of https://github.com/kylef/Stencil
+9db4710bb58092ecc38543f08b6d197ddb1adf19	not-for-merge	branch 'linux' of https://github.com/kylef/Stencil
+a807322812c67880e8d25af28dff2733eaac1bf1	not-for-merge	branch 'map-compact' of https://github.com/kylef/Stencil
+e516ca9389b64da70b71a461925bbca66f65fe61	not-for-merge	branch 'master' of https://github.com/kylef/Stencil
+a0af6f40029f40fb8db82b0bd520b1b81985a1e2	not-for-merge	branch 'resolvable-expressions' of https://github.com/kylef/Stencil
+22919dc5ced41f95199f8e07ccff12357ec185c7	not-for-merge	branch 'resolve' of https://github.com/kylef/Stencil
+c9e082fdf0cb23faa9fdb56184b6024fbf2a7db5	not-for-merge	'refs/pull/103/head' of https://github.com/kylef/Stencil
+414b2f2e62f987811b099f3e42313f20daaea1fa	not-for-merge	'refs/pull/106/head' of https://github.com/kylef/Stencil
+add0a3c301914b505b35c18d3269b2409372d577	not-for-merge	'refs/pull/106/merge' of https://github.com/kylef/Stencil
+9b4354bb9f796f05dfc7ee343901fbadbbfec218	not-for-merge	'refs/pull/110/head' of https://github.com/kylef/Stencil
+1bde107c2e7fd50edc194a6b30e4398e2eec4de2	not-for-merge	'refs/pull/110/merge' of https://github.com/kylef/Stencil
+3be8f70ddbfb1388505edfc4405f6802ffc2b2a7	not-for-merge	'refs/pull/111/head' of https://github.com/kylef/Stencil
+9f87aa241895faef055bdf9dd913b01e025f1fcd	not-for-merge	'refs/pull/112/head' of https://github.com/kylef/Stencil
+2c8c145c5f082bad44562b434be5aa9ff840dd19	not-for-merge	'refs/pull/112/merge' of https://github.com/kylef/Stencil
+6e3c31401c23b7e9b6d583a38d4163e652e503c1	not-for-merge	'refs/pull/114/head' of https://github.com/kylef/Stencil
+bcbebc43563f3afab34da39f1763537d07e3d180	not-for-merge	'refs/pull/114/merge' of https://github.com/kylef/Stencil
+3a1c17c554ac644b10b833e01e09664632ef6059	not-for-merge	'refs/pull/122/head' of https://github.com/kylef/Stencil
+ccd65fe0a081f6b7200d3d1d5473f4826a65e184	not-for-merge	'refs/pull/123/head' of https://github.com/kylef/Stencil
+164bf00e77043e5288b10133335b3284a00dca3d	not-for-merge	'refs/pull/126/head' of https://github.com/kylef/Stencil
+64571464d93a6808c6493a99f95bf7828f4a3190	not-for-merge	'refs/pull/129/head' of https://github.com/kylef/Stencil
+b3d551962ab1d3a5deef81cb287b11bb7659e586	not-for-merge	'refs/pull/13/head' of https://github.com/kylef/Stencil
+185140d1717b7e3e966289f59b14d1a04093a950	not-for-merge	'refs/pull/130/head' of https://github.com/kylef/Stencil
+313137bd29f4a875fe936cd2b12caddd35473c98	not-for-merge	'refs/pull/131/head' of https://github.com/kylef/Stencil
+244ac6b161a8e1087024eac023348545a6644423	not-for-merge	'refs/pull/134/head' of https://github.com/kylef/Stencil
+a9018a63a38e41813fa5474abbd2d05379afeeb4	not-for-merge	'refs/pull/134/merge' of https://github.com/kylef/Stencil
+a10a345d94d6e523c29b098df8421d1056d41b67	not-for-merge	'refs/pull/136/head' of https://github.com/kylef/Stencil
+fee708b0435b52b1d1a5e123228e7e1c2727e626	not-for-merge	'refs/pull/136/merge' of https://github.com/kylef/Stencil
+068b4ffe1394300672dfc4395e03f3f82cca5321	not-for-merge	'refs/pull/14/head' of https://github.com/kylef/Stencil
+213a19efc52cf821198444ff2b3c3d23acdc9c7c	not-for-merge	'refs/pull/143/head' of https://github.com/kylef/Stencil
+f36f3570107059abfb1fc5a69030a0ed36377023	not-for-merge	'refs/pull/144/head' of https://github.com/kylef/Stencil
+da611c8a86821aa79636de9946ec70d768313224	not-for-merge	'refs/pull/145/head' of https://github.com/kylef/Stencil
+7ac1721e97ff8e2d153ce9c23b76a72fcc666734	not-for-merge	'refs/pull/146/head' of https://github.com/kylef/Stencil
+f13d339c1316f21790510be7f85b1122b4430c69	not-for-merge	'refs/pull/146/merge' of https://github.com/kylef/Stencil
+63fe629dec2bcfb998f41bbe1e0842bdeda99241	not-for-merge	'refs/pull/149/head' of https://github.com/kylef/Stencil
+8bdfd47c54142097049848c056505d56be76b46e	not-for-merge	'refs/pull/151/head' of https://github.com/kylef/Stencil
+5c4973f34e1cd0fdee2b8ba521a33a6ec17ca034	not-for-merge	'refs/pull/151/merge' of https://github.com/kylef/Stencil
+a96fcff680d61150ca9186524af6eacdf38bebcc	not-for-merge	'refs/pull/152/head' of https://github.com/kylef/Stencil
+f006c41a61c6fcad701a3d6a268adf70ed7f7f5b	not-for-merge	'refs/pull/153/head' of https://github.com/kylef/Stencil
+a9792095907ef1b68cdde8995e38e4a443a93faf	not-for-merge	'refs/pull/153/merge' of https://github.com/kylef/Stencil
+1e6846867e4fb7b510f274d1f6f8a8e1ba827f24	not-for-merge	'refs/pull/154/head' of https://github.com/kylef/Stencil
+38e9d15d0a71a6e34a0e29a820535c7a08cf1e13	not-for-merge	'refs/pull/160/head' of https://github.com/kylef/Stencil
+1f3b89286f09d67381a9e0437a1613be85e81584	not-for-merge	'refs/pull/162/head' of https://github.com/kylef/Stencil
+e6d484a0281bd2c61ec40dcfb61f6ab515a5a238	not-for-merge	'refs/pull/163/head' of https://github.com/kylef/Stencil
+997b611333ef6cbb06cad59875350207e6a74143	not-for-merge	'refs/pull/163/merge' of https://github.com/kylef/Stencil
+a0af6f40029f40fb8db82b0bd520b1b81985a1e2	not-for-merge	'refs/pull/164/head' of https://github.com/kylef/Stencil
+cd0bc0291e0d9135d7ac3f702b5072eb6ed02c19	not-for-merge	'refs/pull/164/merge' of https://github.com/kylef/Stencil
+ed691de88e813ff3488e00303024f729ef043057	not-for-merge	'refs/pull/165/head' of https://github.com/kylef/Stencil
+74e79d4c747a7ed16043d945ca2d4b474fabe0b7	not-for-merge	'refs/pull/166/head' of https://github.com/kylef/Stencil
+09fce03408cb41512b2f577e4c0214f0b31c479d	not-for-merge	'refs/pull/166/merge' of https://github.com/kylef/Stencil
+96a004eb3426d3c25df6f88774d1bf773f9af026	not-for-merge	'refs/pull/167/head' of https://github.com/kylef/Stencil
+61a5bd071750f85aaa325a85a7e554d2746d549e	not-for-merge	'refs/pull/168/head' of https://github.com/kylef/Stencil
+66defc8796a978a599aecfda3430a20faece43de	not-for-merge	'refs/pull/169/head' of https://github.com/kylef/Stencil
+98ec46a6f8372d582f63c5cff73e0278149db709	not-for-merge	'refs/pull/169/merge' of https://github.com/kylef/Stencil
+c70510b3a5eb9660c9f32381d5f4c31c512de961	not-for-merge	'refs/pull/17/head' of https://github.com/kylef/Stencil
+d6a465e188c3065ccc7640f53b239182a781b506	not-for-merge	'refs/pull/170/head' of https://github.com/kylef/Stencil
+300c7b78513f8896ddf0847c7189fcc6e0ea208b	not-for-merge	'refs/pull/170/merge' of https://github.com/kylef/Stencil
+96ebfe00bd6cb62b53abba4e5871428d07a8b6a9	not-for-merge	'refs/pull/171/head' of https://github.com/kylef/Stencil
+01e4f75f7cceb598ec22a5fbbe7ca4ab8ebbdb09	not-for-merge	'refs/pull/172/head' of https://github.com/kylef/Stencil
+cea8de29ed11be712746820bcb2a84c8f4cc5f9d	not-for-merge	'refs/pull/173/head' of https://github.com/kylef/Stencil
+31d28e6f9328428e15ef2b2cdcfc40b543b5ccf3	not-for-merge	'refs/pull/173/merge' of https://github.com/kylef/Stencil
+c35197f5b8f587ab6aa6e9a10a317fdfcf7b37e0	not-for-merge	'refs/pull/174/head' of https://github.com/kylef/Stencil
+2518e2468aac89c30d3a2168c3476d5d9fee37fc	not-for-merge	'refs/pull/174/merge' of https://github.com/kylef/Stencil
+9cb7c6b8a9990af6238badfe3a81f3bc0f88c958	not-for-merge	'refs/pull/175/head' of https://github.com/kylef/Stencil
+0b12831dde941f97b757aa7fea7d7c82b5e0d36f	not-for-merge	'refs/pull/175/merge' of https://github.com/kylef/Stencil
+b7662f98b6bba11677faa43bd9e030d7d4f99c70	not-for-merge	'refs/pull/176/head' of https://github.com/kylef/Stencil
+86ed8770e1c1f42fa5a2267e9dad08dab2bafb82	not-for-merge	'refs/pull/177/head' of https://github.com/kylef/Stencil
+aef188a2f5f2a308a18eda62ec731a8806b5ba2f	not-for-merge	'refs/pull/178/head' of https://github.com/kylef/Stencil
+f7d0d53faa9350a89af7beb382bef209c4e95433	not-for-merge	'refs/pull/179/head' of https://github.com/kylef/Stencil
+a5dbff799af9056727c066d5be4e2498c51a6619	not-for-merge	'refs/pull/179/merge' of https://github.com/kylef/Stencil
+f6ffe37cfa39ad6a23acbab1203de0c50c64c9bc	not-for-merge	'refs/pull/180/head' of https://github.com/kylef/Stencil
+2576f4afbd0054f7b56f4b9d4689f057ac46b4a8	not-for-merge	'refs/pull/180/merge' of https://github.com/kylef/Stencil
+a6dba678284f0e4889a7ed9975069987da3b5c79	not-for-merge	'refs/pull/181/head' of https://github.com/kylef/Stencil
+0e6d3c02c09e1bbf5596712bb048d96854d17d10	not-for-merge	'refs/pull/182/head' of https://github.com/kylef/Stencil
+edb99882e79bb1787b4b4ca4c8bbd1fbc920b8e9	not-for-merge	'refs/pull/182/merge' of https://github.com/kylef/Stencil
+beecbd83bef07760e3d25acc3756f14a57b2c37a	not-for-merge	'refs/pull/183/head' of https://github.com/kylef/Stencil
+db1d8e30b3b395e0ae69707ab4c7f626bef4ea28	not-for-merge	'refs/pull/183/merge' of https://github.com/kylef/Stencil
+003edfe95b0d178842bb235d05023cdcc2756063	not-for-merge	'refs/pull/184/head' of https://github.com/kylef/Stencil
+c6694287b2b3455cdbb4eea6c547dbe0d6f17f4d	not-for-merge	'refs/pull/186/head' of https://github.com/kylef/Stencil
+653aea923d026faa573afd0b76fbed0ec315c6ce	not-for-merge	'refs/pull/187/head' of https://github.com/kylef/Stencil
+0e017669d42bd0b05eee76ac9e4e4cd4fefe9125	not-for-merge	'refs/pull/188/head' of https://github.com/kylef/Stencil
+a807322812c67880e8d25af28dff2733eaac1bf1	not-for-merge	'refs/pull/189/head' of https://github.com/kylef/Stencil
+a780bb2cddaeb8ebeff2733bf77c7cb588f9352e	not-for-merge	'refs/pull/189/merge' of https://github.com/kylef/Stencil
+0710c404b545f98c7abb0e964916a22d478175d0	not-for-merge	'refs/pull/19/head' of https://github.com/kylef/Stencil
+ca59b3c622d64b27028c4e3330e64f2c5721ba1c	not-for-merge	'refs/pull/190/head' of https://github.com/kylef/Stencil
+241e7cd8eb70cd5f532d0e1c467c17987f2463af	not-for-merge	'refs/pull/191/head' of https://github.com/kylef/Stencil
+634afbddbc886dc815cc4d26322ecc3fcabd2f7c	not-for-merge	'refs/pull/191/merge' of https://github.com/kylef/Stencil
+d6aa51dda24a5fac0cf6dde31d1050549757f6e5	not-for-merge	'refs/pull/192/head' of https://github.com/kylef/Stencil
+94ef66a32b7f03bcf74a04f0f1aefd1bd3d371b4	not-for-merge	'refs/pull/193/head' of https://github.com/kylef/Stencil
+0f9415f3c56957ad78ca9d325cfb4192ccfa547a	not-for-merge	'refs/pull/196/head' of https://github.com/kylef/Stencil
+3e40ca731a7d81158842fd90311774dae39833df	not-for-merge	'refs/pull/196/merge' of https://github.com/kylef/Stencil
+1fd78623e4fb61c2d51f88bff57b1001ce1cfeb6	not-for-merge	'refs/pull/198/head' of https://github.com/kylef/Stencil
+113333577efe6356799a05569cfe58b5f4adf3cf	not-for-merge	'refs/pull/198/merge' of https://github.com/kylef/Stencil
+cc2dce40c5ac5f51de893ca130fd46c79b526859	not-for-merge	'refs/pull/199/head' of https://github.com/kylef/Stencil
+f442d5b957a43d4dfe7f5407ed3fe8aaff5b6fbb	not-for-merge	'refs/pull/199/merge' of https://github.com/kylef/Stencil
+d4192eb724130bfc5644c92ead36889ca15e0732	not-for-merge	'refs/pull/20/head' of https://github.com/kylef/Stencil
+01da0d5d3b62bd167f7dcb31c9acca7de3f10903	not-for-merge	'refs/pull/20/merge' of https://github.com/kylef/Stencil
+1bb38f8908559cc1a4ead739ae9a2fbc1aca48d2	not-for-merge	'refs/pull/201/head' of https://github.com/kylef/Stencil
+11a81eb4c5c7932bdb9c67f6991633235c7dfce3	not-for-merge	'refs/pull/201/merge' of https://github.com/kylef/Stencil
+5c6e9bdf628eb304ef905c63038a4fb87bff7be7	not-for-merge	'refs/pull/202/head' of https://github.com/kylef/Stencil
+08fc21d177d88422d366cdbd27e004bc4b520e3e	not-for-merge	'refs/pull/203/head' of https://github.com/kylef/Stencil
+08907780601047a67b46b8bef03a062613e8f5b7	not-for-merge	'refs/pull/204/head' of https://github.com/kylef/Stencil
+8397a1b7e4fc7b3d4b5bb73ae5645ff76742c4f0	not-for-merge	'refs/pull/205/head' of https://github.com/kylef/Stencil
+1f00e63f942daeffc56d997c8c45650685de565c	not-for-merge	'refs/pull/207/head' of https://github.com/kylef/Stencil
+a4eaa963c186ae784865360dbce2c16b4506510e	not-for-merge	'refs/pull/207/merge' of https://github.com/kylef/Stencil
+955ff65fa752e5ef2f2a2a1d3771379ca0acdb3f	not-for-merge	'refs/pull/210/head' of https://github.com/kylef/Stencil
+3be7aa43af0826ceba09bcb17a942780b9e3d728	not-for-merge	'refs/pull/212/head' of https://github.com/kylef/Stencil
+56655d582377fe5c1d6dfecd2218fb763f12ca45	not-for-merge	'refs/pull/213/head' of https://github.com/kylef/Stencil
+2627d3e0d12850cbb9a9d626a5594781ba24fb01	not-for-merge	'refs/pull/214/head' of https://github.com/kylef/Stencil
+e395a1058b8c4b74fa46b1634a2742a98ab9f15b	not-for-merge	'refs/pull/215/head' of https://github.com/kylef/Stencil
+3995ff9acfb25812ca4ad9b835d457e2e1cbe75e	not-for-merge	'refs/pull/216/head' of https://github.com/kylef/Stencil
+b66abc3112cc14833f1d265e6663b85fd1accb69	not-for-merge	'refs/pull/221/head' of https://github.com/kylef/Stencil
+94e1c8bf9d80a3ffcd366a79933f18131d2420dd	not-for-merge	'refs/pull/225/head' of https://github.com/kylef/Stencil
+c729853bc79e623bc606d6ba0b303ec1589ba520	not-for-merge	'refs/pull/225/merge' of https://github.com/kylef/Stencil
+cb4e51484660d17c92c0baa8e4c6f1e1b0f8e1a0	not-for-merge	'refs/pull/226/head' of https://github.com/kylef/Stencil
+99be5f0459d67aad8d91f0651a31b98765bca98f	not-for-merge	'refs/pull/227/head' of https://github.com/kylef/Stencil
+93ccc56540c07f8a18322c8d643a89a08b394ded	not-for-merge	'refs/pull/228/head' of https://github.com/kylef/Stencil
+5c23e11452e77442ebace8a57d674e6d342b5046	not-for-merge	'refs/pull/229/head' of https://github.com/kylef/Stencil
+84f117b40c2a4c1644fdfbf2f212344bcfe0d5be	not-for-merge	'refs/pull/23/head' of https://github.com/kylef/Stencil
+9cea2616479c25eed0cf5ee76294f2fdc7381d9a	not-for-merge	'refs/pull/230/head' of https://github.com/kylef/Stencil
+d42c4fe3c0a101a259278a71df875c6d5570c7f3	not-for-merge	'refs/pull/232/head' of https://github.com/kylef/Stencil
+206589c77fc28a291f6465c1b745ced4436c5311	not-for-merge	'refs/pull/233/head' of https://github.com/kylef/Stencil
+0e05d4ce061ff34736ae2e18179cca53714668b7	not-for-merge	'refs/pull/233/merge' of https://github.com/kylef/Stencil
+8210fa57f14024bc4514dcd9d527b8dd3a847383	not-for-merge	'refs/pull/234/head' of https://github.com/kylef/Stencil
+9c408d488eaf9c4ea41ca258875304ed186e53d7	not-for-merge	'refs/pull/239/head' of https://github.com/kylef/Stencil
+f9006d515a96e85f34c7c5788010ec928775ebc9	not-for-merge	'refs/pull/24/head' of https://github.com/kylef/Stencil
+a3da20cedca3c9bb161f54c2edc6222d85fa02d8	not-for-merge	'refs/pull/240/head' of https://github.com/kylef/Stencil
+064b2f706c68594802b6f735421a1784938db60a	not-for-merge	'refs/pull/242/head' of https://github.com/kylef/Stencil
+49d2165d226b5ff2efa470d9adcfbb7332f152ea	not-for-merge	'refs/pull/243/head' of https://github.com/kylef/Stencil
+e4654ec6b5d5355c6911b2b58d44dbb97dfc7a91	not-for-merge	'refs/pull/245/head' of https://github.com/kylef/Stencil
+5819c29abf7a98ae8649c7e6db0aee334242ba4e	not-for-merge	'refs/pull/246/head' of https://github.com/kylef/Stencil
+fbdf346d24d417b962be6bc058164494152436da	not-for-merge	'refs/pull/246/merge' of https://github.com/kylef/Stencil
+c192b5e50b6fc01fbeb684623ad66e56d0240970	not-for-merge	'refs/pull/247/head' of https://github.com/kylef/Stencil
+9243bba2b7c2c18111bdd01670e4bec3ad0e2e1e	not-for-merge	'refs/pull/249/head' of https://github.com/kylef/Stencil
+22e434408bdbf02998fb6d7fd71cea4ff0d6ac4d	not-for-merge	'refs/pull/25/head' of https://github.com/kylef/Stencil
+42e415a9bf26e897ddcd0350b42dbddfe0d2d3fd	not-for-merge	'refs/pull/251/head' of https://github.com/kylef/Stencil
+524c0acce6b5cf4ce883e74cb4fa36a6910e66ac	not-for-merge	'refs/pull/252/head' of https://github.com/kylef/Stencil
+22eea8857cfe7ac33fd834765e97719185200573	not-for-merge	'refs/pull/254/head' of https://github.com/kylef/Stencil
+6b3591eec3699be4f49c2aa9569db25189e2f736	not-for-merge	'refs/pull/256/head' of https://github.com/kylef/Stencil
+7593790049be3ae2f4abf043aaf67ac0a13bedf8	not-for-merge	'refs/pull/257/head' of https://github.com/kylef/Stencil
+c310d38af1069d4808bca722009aa15744c452bf	not-for-merge	'refs/pull/257/merge' of https://github.com/kylef/Stencil
+4154cd31ff22aff229cd89b044a26803f8534337	not-for-merge	'refs/pull/258/head' of https://github.com/kylef/Stencil
+ad01499d6a7052bf203619bf85e4800b4f4e0d90	not-for-merge	'refs/pull/259/head' of https://github.com/kylef/Stencil
+8928f0394cb256ebd1bd34b00163d3201d9983f4	not-for-merge	'refs/pull/259/merge' of https://github.com/kylef/Stencil
+dcf2611ac24829ffe80cf46894ebc98fdda62e0c	not-for-merge	'refs/pull/26/head' of https://github.com/kylef/Stencil
+ee4203a26989db017fd79d6f3d74c6661019f9c3	not-for-merge	'refs/pull/261/head' of https://github.com/kylef/Stencil
+693565ddda56295845f92f8290ebb2a2b64be9f5	not-for-merge	'refs/pull/263/head' of https://github.com/kylef/Stencil
+68a791c993eb111536f5889d90c1a1ce1c10b63f	not-for-merge	'refs/pull/267/head' of https://github.com/kylef/Stencil
+f64285c00921e8e64b8ba70db4c5001d790ab0bd	not-for-merge	'refs/pull/267/merge' of https://github.com/kylef/Stencil
+4020a9851a572d4780db13c4ff2047933106d0da	not-for-merge	'refs/pull/268/head' of https://github.com/kylef/Stencil
+ba674a702eb7a8b3304d1442b4772a07ef8a5de5	not-for-merge	'refs/pull/269/head' of https://github.com/kylef/Stencil
+f7d7d6d4419f6837aed4b93b3ff480c59862941f	not-for-merge	'refs/pull/270/head' of https://github.com/kylef/Stencil
+beb3d30a72bf320dbad069bbdc121a76cd34fe37	not-for-merge	'refs/pull/277/head' of https://github.com/kylef/Stencil
+ea87b1f96f110637f6ebc2aaa7693db6c15b7bd6	not-for-merge	'refs/pull/280/head' of https://github.com/kylef/Stencil
+906e7c5d093505a6978db80e97703009e11a3346	not-for-merge	'refs/pull/280/merge' of https://github.com/kylef/Stencil
+03f9156cb9d7abeb4dd1b339c4f734e455fb3fc8	not-for-merge	'refs/pull/281/head' of https://github.com/kylef/Stencil
+401dd3adb8418ff8028079c78f3c82840590df80	not-for-merge	'refs/pull/281/merge' of https://github.com/kylef/Stencil
+a297b4ec420e329f3e9d507a064a7779f357dc33	not-for-merge	'refs/pull/29/head' of https://github.com/kylef/Stencil
+b03ec50a42b93d1c3c31715aa940811fc036743c	not-for-merge	'refs/pull/30/head' of https://github.com/kylef/Stencil
+fa0df6df1cc5d3d5ade7109def3000a8e74f3471	not-for-merge	'refs/pull/32/head' of https://github.com/kylef/Stencil
+ba87a0399000f83e7b459e0f61dd649aa056158c	not-for-merge	'refs/pull/32/merge' of https://github.com/kylef/Stencil
+05dc4208081a44a6144ba66de92eb343b88580cc	not-for-merge	'refs/pull/33/head' of https://github.com/kylef/Stencil
+20cc95fb87526fc4c030394547e73e195b8336af	not-for-merge	'refs/pull/34/head' of https://github.com/kylef/Stencil
+ba65ab5fbeb78fb2e8e7e4d34703c7f390738e8c	not-for-merge	'refs/pull/36/head' of https://github.com/kylef/Stencil
+547f7f27121891aa700275faa40024c258dd71a9	not-for-merge	'refs/pull/38/head' of https://github.com/kylef/Stencil
+755fd5e2aaab01fd73496581aaa7e100d36f693d	not-for-merge	'refs/pull/38/merge' of https://github.com/kylef/Stencil
+0af879ba8af23cd00cb84afe57d9156e199c4e20	not-for-merge	'refs/pull/40/head' of https://github.com/kylef/Stencil
+3722998c35ea1b0de7092d4d14ad4436a24fc9df	not-for-merge	'refs/pull/41/head' of https://github.com/kylef/Stencil
+aca0a3181deb489406783446f2aef239278a6ce4	not-for-merge	'refs/pull/43/head' of https://github.com/kylef/Stencil
+7063e12f89149c2eb4c0916bce6e62e901a339a1	not-for-merge	'refs/pull/44/head' of https://github.com/kylef/Stencil
+0becba4f42a6570c1f49dece46902c18dcbd3be7	not-for-merge	'refs/pull/44/merge' of https://github.com/kylef/Stencil
+372b2e7576c867d0b72c1e088f2785372f2d85c5	not-for-merge	'refs/pull/45/head' of https://github.com/kylef/Stencil
+356393088b1fa48bf64a5fb9d91330938b5edf70	not-for-merge	'refs/pull/46/head' of https://github.com/kylef/Stencil
+f78562a1fde739deac796a104b6cedf89dd41fb8	not-for-merge	'refs/pull/47/head' of https://github.com/kylef/Stencil
+fd4618814bd9434f74e260424fa35c57e3bae1e3	not-for-merge	'refs/pull/48/head' of https://github.com/kylef/Stencil
+ae5aeff0800904daddde4c32c7329549779f3cf6	not-for-merge	'refs/pull/48/merge' of https://github.com/kylef/Stencil
+1fc0a327cb917d00374d247fbd4dc7eee1bb714b	not-for-merge	'refs/pull/50/head' of https://github.com/kylef/Stencil
+7cdbbea35ad9841ab15fd430393c21711f8f039b	not-for-merge	'refs/pull/50/merge' of https://github.com/kylef/Stencil
+affd56ec9927f633eb62f332fcbd75e12b7f06e7	not-for-merge	'refs/pull/54/head' of https://github.com/kylef/Stencil
+2190afee0ded15a38d85d21b01c10fde52f93429	not-for-merge	'refs/pull/55/head' of https://github.com/kylef/Stencil
+7b25026cd5af83e4cbbf5fb16c3ba59a716062ba	not-for-merge	'refs/pull/57/head' of https://github.com/kylef/Stencil
+f1e340ba17cb5bf9fb579caa51fc387fc9260280	not-for-merge	'refs/pull/57/merge' of https://github.com/kylef/Stencil
+aa1399be559292648cb4f45095b75578d2e23afa	not-for-merge	'refs/pull/59/head' of https://github.com/kylef/Stencil
+df9065f5a8bf06bece3137e04b219303dcb03d10	not-for-merge	'refs/pull/61/head' of https://github.com/kylef/Stencil
+55ecb61d58e6444c109c6d7e693437f12c3f670a	not-for-merge	'refs/pull/63/head' of https://github.com/kylef/Stencil
+87ab1929cb31ac28e4cfc4ad7489a9e01799c80a	not-for-merge	'refs/pull/63/merge' of https://github.com/kylef/Stencil
+50b708bc494a3f0d8ddaaa8d0c16916c36e1bb47	not-for-merge	'refs/pull/64/head' of https://github.com/kylef/Stencil
+8a7b3c1e2b432e7ddb655d11b79c5cb7e3f8d3d2	not-for-merge	'refs/pull/64/merge' of https://github.com/kylef/Stencil
+ed80d7a1a2a563e35a58cebd53e1e7ebe9ad95bf	not-for-merge	'refs/pull/65/head' of https://github.com/kylef/Stencil
+9520fb0c678f3f3c5eb279ac3dcec5a400b79975	not-for-merge	'refs/pull/65/merge' of https://github.com/kylef/Stencil
+7bfb69cc8210fb988396a2aed83b4c693b4b375a	not-for-merge	'refs/pull/67/head' of https://github.com/kylef/Stencil
+3285bac373dbe2814fe8881f5f9d78166ba9f7e5	not-for-merge	'refs/pull/68/head' of https://github.com/kylef/Stencil
+42911a646f0d23f6eca811408b3b94b6594d5df7	not-for-merge	'refs/pull/69/head' of https://github.com/kylef/Stencil
+8f1800152c9e85aac93c269ea223e1f00528250f	not-for-merge	'refs/pull/69/merge' of https://github.com/kylef/Stencil
+5d2dbb5161475cbda11f0c79a2d9383484f8eb0e	not-for-merge	'refs/pull/71/head' of https://github.com/kylef/Stencil
+c3f20b25d6d1bef72430c83e26cb08926e7994df	not-for-merge	'refs/pull/77/head' of https://github.com/kylef/Stencil
+2eecc5a1d0cbf95f440313a03a24329e583e58e8	not-for-merge	'refs/pull/78/head' of https://github.com/kylef/Stencil
+830233fa50fccc37d9d20a2eacb7fe6c4ffd2eb2	not-for-merge	'refs/pull/79/head' of https://github.com/kylef/Stencil
+d8d490d574f7ffdd191add1f3f7c1e8747764d1c	not-for-merge	'refs/pull/80/head' of https://github.com/kylef/Stencil
+2288d00a95d96776630bfe13a1ee8e0199aa92d7	not-for-merge	'refs/pull/80/merge' of https://github.com/kylef/Stencil
+accb80d457a77d4b421661dca1039aee2477225b	not-for-merge	'refs/pull/82/head' of https://github.com/kylef/Stencil
+4f170c0f541415cbe92daa6965b91bf470716ebc	not-for-merge	'refs/pull/82/merge' of https://github.com/kylef/Stencil
+4d95dea0ffc8e7902c6370bd69bca923f52a3fbf	not-for-merge	'refs/pull/83/head' of https://github.com/kylef/Stencil
+caa1401b4be7bd45365a8bb608e4473dc6dd1eca	not-for-merge	'refs/pull/83/merge' of https://github.com/kylef/Stencil
+7fc38047d379b56fce60928ce3dad94df8f77668	not-for-merge	'refs/pull/84/head' of https://github.com/kylef/Stencil
+ffd88048df538b9474498aef7e079e83b48db003	not-for-merge	'refs/pull/85/head' of https://github.com/kylef/Stencil
+50cf1b0d95a855957c02e88412cb7c784e785d78	not-for-merge	'refs/pull/85/merge' of https://github.com/kylef/Stencil
+5c241d916ae246cb9b008d1dcde22a0e15daa3f3	not-for-merge	'refs/pull/86/head' of https://github.com/kylef/Stencil
+aa7138f1c2c78181fe62566212dc87685b8bd061	not-for-merge	'refs/pull/86/merge' of https://github.com/kylef/Stencil
+bc45588d99aa8d4ebb2b609cba46c560f2a2e63c	not-for-merge	'refs/pull/88/head' of https://github.com/kylef/Stencil
+59970a54aa747d8e7ecfeb1ac15c16ea7dfd9bff	not-for-merge	'refs/pull/88/merge' of https://github.com/kylef/Stencil
+d6a6696c200335b82b20099e4a16a15d79600f57	not-for-merge	'refs/pull/9/head' of https://github.com/kylef/Stencil
+739f09c65994857c29d376a61013d1ec2fd64584	not-for-merge	'refs/pull/92/head' of https://github.com/kylef/Stencil
+94290c81d09f89d2f4dabd0a9cabee188d0634c2	not-for-merge	'refs/pull/92/merge' of https://github.com/kylef/Stencil
+9f0cb593e750276e9cb4672673f68325d77120e4	not-for-merge	'refs/pull/96/head' of https://github.com/kylef/Stencil
+43eadda81d9821e62376cf23ecc22f434b18f685	not-for-merge	'refs/pull/98/head' of https://github.com/kylef/Stencil
+94fa2b4306a318854ad01cea7a1feefcd87d8850	not-for-merge	'refs/pull/99/head' of https://github.com/kylef/Stencil
+6fb2020c704fb78bb1b29cd8830b97356643053d	not-for-merge	'refs/pull/99/merge' of https://github.com/kylef/Stencil
+8c4b31fd5618aabf8b9d1be9243e95f51353d9e0	not-for-merge	tag '0.1.0' of https://github.com/kylef/Stencil
+23747869634160419bf6e0705f7fe86ec5b53f49	not-for-merge	tag '0.1.1' of https://github.com/kylef/Stencil
+a52ee21b7227433b8290005688d275f22f263f67	not-for-merge	tag '0.10.0' of https://github.com/kylef/Stencil
+cf7acea440124f6d348032123d8b163c51cfece0	not-for-merge	tag '0.10.1' of https://github.com/kylef/Stencil
+c2e25f25acfbe24442809c055141d8323af8f6cc	not-for-merge	tag '0.11.0' of https://github.com/kylef/Stencil
+6a4959cea0aa2667eeb5c20d9196d242ea172fcd	not-for-merge	tag '0.12.0' of https://github.com/kylef/Stencil
+b476e50f89577f5848e8013dbf0a850abac892aa	not-for-merge	tag '0.12.1' of https://github.com/kylef/Stencil
+c7dbba41a5cf7ab5a5bdfb5f7855170d05c5f031	not-for-merge	tag '0.13.0' of https://github.com/kylef/Stencil
+0e9a78d6584e3812cd9c09494d5c7b483e8f533c	not-for-merge	tag '0.13.1' of https://github.com/kylef/Stencil
+6d01792cd65ee2b7259ab1d68f8ce61042b387c0	not-for-merge	tag '0.2.0' of https://github.com/kylef/Stencil
+9de84d5ca4cb691d187591baa33a759fd63a49e0	not-for-merge	tag '0.3.0' of https://github.com/kylef/Stencil
+226becb258197b0ddafce7923c657f436cec4f8f	not-for-merge	tag '0.4.0' of https://github.com/kylef/Stencil
+0ccd8809e0c1be5b8da72e5337feef750c33cfdd	not-for-merge	tag '0.5.0' of https://github.com/kylef/Stencil
+9c9ebbe55968cc8c9ee38087f507aadeaf7c5ce7	not-for-merge	tag '0.5.1' of https://github.com/kylef/Stencil
+19d712b4a4341eed07a43f5bfd3d56df60eb2b0c	not-for-merge	tag '0.5.2' of https://github.com/kylef/Stencil
+9b7e6ba7edbe1c77aa7098767eb263709fe2ce5a	not-for-merge	tag '0.5.3' of https://github.com/kylef/Stencil
+65c3052aeec5a26aac297bc08189cc558eaca941	not-for-merge	tag '0.6.0' of https://github.com/kylef/Stencil
+4ffc888ba4b998317240b6c1e4c1705d2a09bc98	not-for-merge	tag '0.6.0-beta.1' of https://github.com/kylef/Stencil
+98edad3566c57e11ae04542971e01b3d4c1fb028	not-for-merge	tag '0.7.0' of https://github.com/kylef/Stencil
+abae80d39dabdf7e85f98e82cce78121b43c2f82	not-for-merge	tag '0.7.1' of https://github.com/kylef/Stencil
+974b9c85a035ed25d591d42ae7f3aa28e02a5380	not-for-merge	tag '0.7.2' of https://github.com/kylef/Stencil
+e2f33d4337c0761676efe26e98a78b1e30e93de6	not-for-merge	tag '0.8.0' of https://github.com/kylef/Stencil
+65a461d0a103896c8ff7e3f17f7be1a5badadeb0	not-for-merge	tag '0.9.0' of https://github.com/kylef/Stencil
