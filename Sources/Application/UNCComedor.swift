@@ -127,7 +127,7 @@ class UNCComedor {
             if let alertRange = page.range(of: "<script language='JavaScript'>alert\\(.*;</script></div>", options: .regularExpression){
                 let alert = page[alertRange]
                 if let idxL = alert.range(of: "alert('"),
-                    let idxU = alert.range(of: "');") {
+                    let idxU = alert.range(of: ");") {
                     alertMessage = String(alert[idxL.upperBound..<idxU.lowerBound])
                 }
                 // else { return .failure(APIError.alertUnparseable) } ???
