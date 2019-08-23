@@ -18,7 +18,12 @@ class APIRouter {
         router.get("/users", handler: getUsers)
         router.get("/menu", handler: getMenu)
         router.get("/servings", handler: getServings)
-        router.get("/reservation", handler: getReservation)
+        
+        //MARK: Reservation actions
+        router.get("/reservation/login", handler: getReservationLogin)
+        router.post("/reservation/login", handler: doReservationLogin) //this will be deprecated
+        router.post("/reservation/reserve", handler: doReservation)
+        router.post("/reservation/status", handler: getReservation)
     }
 
     // MARK: - Handlers
@@ -65,19 +70,55 @@ class APIRouter {
     
     //MARK: Reservation Feature
     
-    private struct ReservationParams : QueryParams {
+    private struct ReservationLoginParams : QueryParams {
         let code:String
     }
-    
-    private static func getReservation(queryParams:ReservationParams, callback: @escaping (ReservationStatusWrapper?, RequestError?) -> Void){
-        UNCComedor.api.getReservation(of: queryParams.code){
+    private static func getReservationLogin(queryParams:ReservationLoginParams, callback: @escaping (ReservationLogin?,RequestError?) -> Void) {
+        UNCComedor.api.getReservationLogin(of: queryParams.code) {
             result in
             switch result {
             case let .success(reservation):
-                callback(ReservationStatusWrapper(reservationStatus: reservation),nil)
+                callback(reservation,nil)
             case .failure(_):
                 callback(nil,nil)
             }
         }
     }
+    
+    private static func doReservationLogin(reservationLogin:ReservationLogin, callback: @escaping (ReservationLogin?,RequestError?) -> Void) {
+        UNCComedor.api.doReservationLogin(with: reservationLogin) {
+            result in
+            switch result {
+            case let .success(reservation):
+                callback(reservation,nil)
+            case .failure(_):
+                callback(nil,nil)
+            }
+        }
+    }
+    
+    private static func doReservation(reservationLogin:ReservationLogin, callback: @escaping (ReservationStatusWrapper?,RequestError?) -> Void){
+        UNCComedor.api.doReservation(withAction:.doReservation, reservationLogin:reservationLogin) {
+            result in
+            switch result {
+            case let .success(reservationStatus):
+                callback(ReservationStatusWrapper(reservationStatus: reservationStatus),nil)
+            case .failure(_):
+                callback(nil,nil)
+            }
+        }
+    }
+    
+    private static func getReservation(reservationLogin:ReservationLogin, callback: @escaping (ReservationStatusWrapper?,RequestError?) -> Void){
+        UNCComedor.api.doReservation(withAction:.getReservation, reservationLogin:reservationLogin) {
+            result in
+            switch result {
+            case let .success(reservationStatus):
+                callback(ReservationStatusWrapper(reservationStatus: reservationStatus),nil)
+            case .failure(_):
+                callback(nil,nil)
+            }
+        }
+    }
+    
 }
