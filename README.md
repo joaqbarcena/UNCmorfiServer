@@ -1,3 +1,31 @@
+# Reservations implementations fork (also free heroku hosting 😍)
+I'been working in parallel with givemeturn repos, where they were for research purpose, into this were wrote a correct implementation (or almost xd)
+
+To test it i choose [heroku](http://heroku.com/) cloud, because its easy, simple and more over has a single instance free tier (without credit card and bla bla)!!!
+
+## Some preliminaries
+
+### Compilation
+To start the compilation in my case by some reason it has the mac sdk out of my 
+actual version (10.13.6) High Sierra was with (10.10) Yosemite, so the server has some functions that needs 10.12 or higher, there are 2 ways to solve this issue `cli` or `xcode`
+
+#### cli (specify target to compiler)
+```bash
+$ swift build -Xswiftc "-target" -Xswiftc "x86_64-apple-macosx10.13"
+```
+
+#### xcode (recomended if you will use it as main ide)
+This will regenerate `xcode project` file for your installed version
+```bash
+$ swift package generate-xcodeproj
+$ xed .
+```
+Then in xcode go to `UNCMorfiServer -> Deployment Target -> 10.13`
+This will make you sure to not waste time
+
+### Heroku deployment
+Here after you get an account and have installed `heroku-cli` tool, then you can create the `instance` as follow by the [swift-buildpack](https://github.com/kylef/heroku-buildpack-swift), that's why i've moved from version 4.1 to 4.2 in `.swift-version` in `Procfile` is the compiled binary that will execute heroku and the binded port `8080`, heroku is based on git to do deployment but that is better explained in heroku 
+
 ### Table of Contents
 * [Requirements](#requirements)
 * [Project contents](#project-contents)
