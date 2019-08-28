@@ -355,7 +355,7 @@ class UNCComedor {
                         //doProcess results (almost) succesfully
                         case .success(let (_,_,alert?)):
                             print(alert)
-                            if alert.contains("SE REALIZO LA RESERVA CON") {
+                            if alert.contains("SE REALIZO LA RESERVA") {
                                 callback(.success(.reserved))
                             } else if alert.contains("NO HAY MAS RESERVAS DISPONIBLES") {
                                 callback(.success(.soldout))
