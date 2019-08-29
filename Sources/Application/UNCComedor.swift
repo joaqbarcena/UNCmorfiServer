@@ -697,9 +697,9 @@ extension UNCComedor {
                         callback(.success(ReservationStatus(reservationResult:result, path:path,
                                                             token: reservationLogin.token != token || sendToken ? token : nil)))
                         
-                    case .success(let path,_,nil) where path.hasSuffix(UNCComedor.successLogin):
+                    case .success(let (path, token, nil)) where path.hasSuffix(UNCComedor.successLogin):
                         print(dataString)
-                        callback(.success(ReservationStatus(reservationResult:.invalid, path:path, token:nil)))
+                        callback(.success(ReservationStatus(reservationResult:.invalid, path:path, token: sendToken ? token : nil)))
                         
                     default: //case .failure(_): //This is pathUnparseable or tokenUnparseable
                         callback(.success(ReservationStatus(reservationResult:.redoLogin, path:nil, token:nil))) //callback(.failure(parserError))
