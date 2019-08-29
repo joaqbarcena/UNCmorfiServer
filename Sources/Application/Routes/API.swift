@@ -21,7 +21,7 @@ class APIRouter {
         
         //MARK: Reservation actions
         router.get("/reservation/login", handler: getReservationLogin)
-        router.post("/reservation/login", handler: doReservationLogin) //this will be deprecated
+        router.post("/reservation/login", handler: doReservationLogin)
         router.post("/reservation/reserve", handler: doReservation)
         router.post("/reservation/status", handler: getReservation)
     }
@@ -97,24 +97,24 @@ class APIRouter {
         }
     }
     
-    private static func doReservation(reservationLogin:ReservationLogin, callback: @escaping (ReservationStatusWrapper?,RequestError?) -> Void){
+    private static func doReservation(reservationLogin:ReservationLogin, callback: @escaping (ReservationStatus?,RequestError?) -> Void){
         UNCComedor.api.doReservation(withAction:.doReservation, reservationLogin:reservationLogin) {
             result in
             switch result {
             case let .success(reservationStatus):
-                callback(ReservationStatusWrapper(reservationStatus: reservationStatus),nil)
+                callback(reservationStatus, nil)
             case .failure(_):
                 callback(nil,nil)
             }
         }
     }
     
-    private static func getReservation(reservationLogin:ReservationLogin, callback: @escaping (ReservationStatusWrapper?,RequestError?) -> Void){
+    private static func getReservation(reservationLogin:ReservationLogin, callback: @escaping (ReservationStatus?,RequestError?) -> Void){
         UNCComedor.api.doReservation(withAction:.getReservation, reservationLogin:reservationLogin) {
             result in
             switch result {
             case let .success(reservationStatus):
-                callback(ReservationStatusWrapper(reservationStatus: reservationStatus),nil)
+                callback(reservationStatus, nil)
             case .failure(_):
                 callback(nil,nil)
             }

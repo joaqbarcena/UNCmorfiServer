@@ -16,16 +16,6 @@ class UNCComedor {
     // MARK: URLSession
     //Universal session to connect with Rest-services
     private let session = URLSession.shared
-    
-    //Sesssion that doesnt persist cookies, so they are saved at real end-client
-    private let restSession:URLSession = {
-        let defaultRestConfig = URLSessionConfiguration.default.copy() as! URLSessionConfiguration
-        defaultRestConfig.httpCookieAcceptPolicy = .never
-        defaultRestConfig.httpCookieStorage = nil
-        defaultRestConfig.httpShouldSetCookies = true
-        return URLSession(configuration: defaultRestConfig)
-    }()
-
 
     // MARK: API endpoints
 
@@ -33,9 +23,7 @@ class UNCComedor {
     private static let baseMenuURL = URL(string: "https://www.unc.edu.ar/vida-estudiantil/men%C3%BA-de-la-semana")!
     private static let baseServingsURL = URL(string: "http://comedor.unc.edu.ar/gv-ds.php?json=true&accion=1&sede=0475")!
     private static let baseImageURL = URL(string: "https://asiruws.unc.edu.ar/foto/")!
-    private static let baseReservationURL = "http://comedor.unc.edu.ar/reserva"
 
-    
     // MARK: Errors
 
     enum APIError: Error {
@@ -49,19 +37,6 @@ class UNCComedor {
         case userUnparseable
         case servingDateUnparseable
         case servingCountUnparseable
-        
-        //Unparsable reservation token/path
-        case pathUnparseable
-        case tokenUnparseable
-        case captchaUnparseable
-        
-        //Captcha/Session inconsistences
-        case captchaTextEmpty
-        case cookiesEmpty
-        case cookiesInvalid
-        
-        //
-        case unimplementedFunction
     }
 
     // MARK: Helpers
@@ -85,301 +60,11 @@ class UNCComedor {
                 print("response = \(res!)")
                 return APIError.badResponse
         }
-        
+
         return nil
-    }
-    
-    
-    /**
-     Boundary generator
-     */
-    private static func boundary() -> String {
-        return "----WebKitFormBoundary\(String((0..<16).map{ _ in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".randomElement()!}))"
-    }
-    /**
-     Parser to get application submit path, token and alert message
-     This is done by regex, but i would like replace it with soup parser
-     - Parameters:
-     - page : the html page
-     - getAlertMessage? : the last stage has an alert message, and this search
-        and retrieve that message
-    */
-    private static func parseReservationPage(page:String, getAlertMessage:Bool=false) -> Result<(path:String, token:String, alertMessage:String?)> {
-            
-        //Search/scrap submit path
-        guard let pathRange = page.range(of: "/aplicacion\\.php.*onsubmit", options: .regularExpression)
-            else {
-                return .failure(APIError.pathUnparseable)
-            }
-        let path = String(page[pathRange].dropLast("' onsubmit".count))
-            
-        //Search/scrap token
-        guard let tokenRange = page.range(of: "id='cstoken'.*/>", options: .regularExpression)
-            else {
-                return .failure(APIError.tokenUnparseable)
-            }
-        let token = String(page[tokenRange][page[tokenRange].range(of: "value='.*'", options: .regularExpression)!]
-            .dropFirst("value='".count)
-            .dropLast("'".count))
-        
-        var alertMessage:String? = nil
-        if getAlertMessage {
-            if let alertRange = page.range(of: "<script language='JavaScript'>alert\\(.*;</script></div>", options: .regularExpression){
-                let alert = page[alertRange]
-                if let idxL = alert.range(of: "alert('"),
-                    let idxU = alert.range(of: ");") {
-                    alertMessage = String(alert[idxL.upperBound..<idxU.lowerBound])
-                }
-                // else { return .failure(APIError.alertUnparseable) } ???
-            }
-        }
-        //<td class="ei-cuadro-fila 4">CONSUMIDO</td>
-        return .success((path, token, alertMessage))
-    }
-    
-    /**
-     Request builder for differents stages
-     - Parameters:
-     -  action : ReservationAction = (getLogin, doLogin, doProcess)
-     -  withPath : String = Path where it sends the form data
-     -  withToken : String = Token sended inside the form data (always)
-     - Returns: The request ready to use with dataTask
-     */
-    private static func buildRequest(_ action:ReservationAction, _ reservationLogin:ReservationLogin, withBoundary boundary:String="") -> URLRequest {
-        return buildRequest(action,
-                            withPath: reservationLogin.path,
-                            withToken: reservationLogin.token,
-                            withBoundary:boundary,
-                            withCode: reservationLogin.code,
-                            withCaptcha: reservationLogin.captchaText ?? "",
-                            withCookies: reservationLogin.cookies ?? [])
-    }
-    
-    private static func buildRequest(_ action:ReservationAction, withPath path:String = "/",
-                      withToken token:String = "",
-                      withBoundary boundary:String="",
-                      withCode code:String="",
-                      withCaptcha captcha:String="",
-                      withCookies cookies:[CodableCookie]=[]) -> URLRequest {
-        
-        var infoRequest:(httpMethod: String, httpBody: String)
-        var headers = [
-            "cache-control": "no-cache"
-        ]
-        switch action {
-        case .getLogin:
-            infoRequest = ("GET","")
-        case .doLogin:
-            infoRequest = ("POST","--\(boundary)\nContent-Disposition: form-data; name=\"cstoken\"\n\n\(token)\n--\(boundary)\nContent-Disposition: form-data; name=\"form_2689_datos\"\n\n\("ingresar")\n--\(boundary)\nContent-Disposition: form-data; name=\"form_2689_datos_implicito\"\n\n\n--\(boundary)\nContent-Disposition: form-data; name=\"ef_form_2689_datosusuario\"\n\n\(code)\n--\(boundary)\nContent-Disposition: form-data; name=\"ef_form_2689_datoscontrol\"\n\n\(captcha)\n--\(boundary)--")
-        case .doReservation:
-            infoRequest = ("POST","--\(boundary)\nContent-Disposition: form-data; name=\"cstoken\"\n\n\(token)\n--\(boundary)\nContent-Disposition: form-data; name=\"ci_2695\"\n\n\("procesar")\n--\(boundary)\nContent-Disposition: form-data; name=\"ci_2695__param\"\n\n\("undefined")\n--\(boundary)--")
-        case .getReservation:
-            infoRequest = ("POST","--\(boundary)\nContent-Disposition: form-data; name=\"cstoken\"\n\n\(token)\n--\(boundary)\nContent-Disposition: form-data; name=\"ci_2695\"\n\n\("consu_rese")\n--\(boundary)\nContent-Disposition: form-data; name=\"ci_2695__param\"\n\n\("undefined")\n--\(boundary)--")
-        }
-        
-        var request = URLRequest(url: URL(string: UNCComedor.baseReservationURL + path)!)
-        if infoRequest.httpMethod == "POST" {
-            //TODO read meta header in response
-            request.httpBody = infoRequest.httpBody.data(using: .isoLatin1)
-            headers["Content-Type"] = "multipart/form-data; boundary=" + boundary
-        }
-        //mapea las codableCookies a cookies que no sean nil
-        let cookies = cookies.compactMap({ $0.toCookie() })
-        if !cookies.isEmpty {
-            headers.merge(HTTPCookie.requestHeaderFields(with: cookies)){ (_,new) in new }
-        }
-        request.httpMethod = infoRequest.httpMethod
-        request.allHTTPHeaderFields = headers
-        
-        return request
     }
 
     // MARK: - Public API methods
-    
-    func getReservationLogin(of code: String, callback: @escaping (_ result: Result<ReservationLogin>) -> Void) {
-        //Check empty-ness, maybe it's unnecesary
-        guard !code.isEmpty else {
-            callback(.failure(APIError.badResponse)) //TODO: Change this
-            return
-        }
-        
-        let task = restSession.dataTask(with: UNCComedor.buildRequest(.getLogin)){ data, res, error in
-            //Exit early
-            let httpError = UNCComedor.handleAPIResponse(error: error, res: res)
-            guard httpError == nil else {
-                callback(.failure(httpError!))
-                return
-            }
-            
-            guard let data = data,
-                let dataString = String(data: data, encoding: .isoLatin1) else {
-                    callback(.failure(APIError.dataDecodingError))
-                    return
-            }
-            
-            guard let res = res as? HTTPURLResponse else {
-                    callback(.failure(APIError.badResponse))
-                    return
-            }
-            
-            var cookies:[CodableCookie] = []
-            if let headers = res.allHeaderFields as? [String:String] {
-                let httpCookies = HTTPCookie.cookies(withResponseHeaderFields: headers, for: res.url!)
-                cookies = httpCookies.map({
-                    CodableCookie.fromCookie(cookie: $0)//🍪
-                })
-            }
-            
-            guard !cookies.isEmpty else {
-                    callback(.failure(APIError.cookiesEmpty))
-                    return
-            }
-            
-            switch(UNCComedor.parseReservationPage(page: dataString)){
-            //Parsing error
-            case .failure(let parserError):
-                callback(.failure(parserError))
-                
-            //getLogin results succesfully
-            case .success(let (path,token,_)):
-                guard let captchaRange = dataString.range(of: "/aplicacion\\.php.*?ts=mostrar_captchas_efs.*?>", options: .regularExpression) else {
-                    callback(.failure(APIError.captchaUnparseable))
-                    return
-                }
-                let captchaPath = String(dataString[captchaRange].dropLast(4))
-                let task = self.restSession.dataTask(with: UNCComedor.buildRequest(.getLogin, withPath:captchaPath, withCookies:cookies)) {
-                    data, res, error in
-                    
-                    //Exit Early
-                    let httpError = UNCComedor.handleAPIResponse(error: error, res: res)
-                    guard httpError == nil else {
-                        callback(.failure(httpError!))
-                        return
-                    }
-                    guard let data = data else {
-                        callback(.failure(APIError.captchaUnparseable)) //TODO: maybe this should never fire
-                        return
-                    }
-                    
-                    callback(.success(ReservationLogin(path:path, token:token, captchaText:nil, captchaImage:data, cookies:cookies, code:code)))
-                }
-                task.resume()
-                
-            }
-        }
-        task.resume()
-    }
-    
-    //TODO: pasarlo a private luego para dejarlo en doProcess ya que luego lksdf
-    public func doReservationLogin(with reservationLogin:ReservationLogin, callback: @escaping(_ result:Result<ReservationLogin>) -> Void){
-        
-        //Exit early
-        guard reservationLogin.captchaText != nil else {
-            callback(.failure(APIError.captchaTextEmpty))
-            return
-        }
-        guard let cookies = reservationLogin.cookies else {
-            callback(.failure(APIError.cookiesEmpty))
-            return
-        }
-        guard !cookies.filter({$0.name == "TOBA_SESSID"}).isEmpty else {
-            callback(.failure(APIError.cookiesInvalid))
-            return
-        }
-        
-        //Generate a random boundary
-        let boundary = UNCComedor.boundary()
-
-        //Makes sure than will not reuse another session cookies
-        let task = restSession.dataTask(with: UNCComedor.buildRequest(.doLogin, reservationLogin, withBoundary: boundary)){
-            data, res, error in
-            
-            //Exit early
-            let httpError = UNCComedor.handleAPIResponse(error: error, res: res)
-            guard httpError == nil else {
-                callback(.failure(httpError!))
-                return
-            }
-            
-            guard let data = data,
-                let dataString = String(data: data, encoding: .isoLatin1) else {
-                    callback(.failure(APIError.dataDecodingError))
-                    return
-            }
-            
-            switch(UNCComedor.parseReservationPage(page: dataString)){
-            //Parsing error, analizar que tipo de error expiro la session ?
-            case .failure(let parserError):
-                callback(.failure(parserError))
-                
-            //doLogin results (almost) succesfully
-            case .success(let (path,token,_)):
-                callback(.success(ReservationLogin(path: path, token: token, captchaText: nil, captchaImage: nil, cookies: reservationLogin.cookies, code: reservationLogin.code)))
-                return
-            }
-        }
-        task.resume()
-    }
-    
-    func doReservation(withAction action:ReservationAction, reservationLogin:ReservationLogin, callback: @escaping (_ result:Result<ReservationStatus>) -> Void){
-        
-        switch action {
-        case .doReservation:
-            doReservationLogin(with: reservationLogin){
-                result in
-                switch result {
-                case let .success(reservationLogin):
-                    let task = self.restSession.dataTask(with:
-                    UNCComedor.buildRequest(.doReservation, reservationLogin, withBoundary: UNCComedor.boundary())){
-                        data, res, error in
-                        
-                        //Exit early, Here maybe the server is down so cookies are no longer valid ...
-                        let httpError = UNCComedor.handleAPIResponse(error: error, res: res)
-                        guard httpError == nil else {
-                            callback(.failure(httpError!))
-                            return
-                        }
-                        
-                        guard let data = data,
-                            let dataString = String(data: data, encoding: .isoLatin1) else {
-                                callback(.failure(APIError.dataDecodingError))
-                                return
-                        }
-                        //parse and get the alertmessage if it's present
-                        switch(UNCComedor.parseReservationPage(page: dataString, getAlertMessage: true)){
-                        //Parsing error
-                        case .failure(let parserError):
-                            callback(.failure(parserError))
-                            //callback(.success(.redoLogin))
-                            
-                        //doProcess results (almost) succesfully
-                        case .success(let (_,_,alert?)):
-                            print(alert)
-                            if alert.contains("SE REALIZO LA RESERVA") {
-                                callback(.success(.reserved))
-                            } else if alert.contains("NO HAY MAS RESERVAS DISPONIBLES") {
-                                callback(.success(.soldout))
-                            } else {
-                                callback(.success(.unavailable))
-                            }
-                            
-                        case .success(_,_,nil):
-                            print(dataString)
-                            callback(.success(.invalid))
-                        }
-                    }
-                    task.resume()
-                case .failure(_):
-                    //This should driver a .failure, to the client
-                    callback(.success(.redoLogin)) //Session expires, captcha could change or empty cookie
-                }
-            }
-        //case .getReservation
-        default :
-            callback(.failure(APIError.unimplementedFunction))
-        }
-    }
-    
 
     func getMenu(callback: @escaping (_ result: Result<Menu>) -> Void) {
         let task = session.dataTask(with: UNCComedor.baseMenuURL) { data, res, error in
@@ -676,37 +361,256 @@ class UNCComedor {
 
         task.resume()
     }
+}
+
+// MARK: Reservation API'S
+
+extension UNCComedor {
     
+    private static let successLogin = "3616" //3614 es que esta todo mal
+    private static let baseReservationURL = "http://comedor.unc.edu.ar/reserva"
     
-    // MARK: Deprecated methods
+    //Sesssion that doesnt persist cookies, so they are saved at real end-client
+    private static let restSession:URLSession = {
+        let defaultRestConfig = URLSessionConfiguration.default.copy() as! URLSessionConfiguration
+        defaultRestConfig.httpCookieAcceptPolicy = .never
+        defaultRestConfig.httpCookieStorage = nil
+        defaultRestConfig.httpShouldSetCookies = true
+        return URLSession(configuration: defaultRestConfig)
+    }()
     
-    @available(*,deprecated)
-    func getReservation(of code: String, callback: @escaping (_ result: Result<ReservationStatus>) -> Void) {
-        /**
-         The reservation consists performing 3 steps
-         - Get Login page then parse "cstoken" and submit-action path of the form (/aplicacion.php?...)
-         while the path is constant, it contains query params calle ai & ah, that idk what they are,
-         but `ai` its like a hash and ah has a couple of values like `migestion||3614`
-         - Perform a POST (with login data) at the submit path with some boundaries, they should be random
-         or constants because the boundaries goes into header but idk if the server do some check of
-         the length of boundaries, then parse same cstoken and submit path
-         - At last instance, do another POST like the previus step but the data request a "procesar" command
-         so that makes the reservation, then parse an alert dialog with status of your request
-         **/
+
+    // MARK: Reservations APIError
+    
+    enum ReservationAPIError : Error {
+        //Unparsable reservation token/path
+        case pathUnparseable
+        case tokenUnparseable
+        case captchaUnparseable
         
+        //Captcha/Session inconsistences
+        case captchaTextEmpty
+        case cookiesEmpty
+        case cookiesInvalid
+        
+        case unimplementedFunction
+    }
+    
+    // MARK: Helper functions
+    
+    /**
+     Boundary generator
+     returns a boundary with 16 trailing random characters
+     */
+    private static func boundary() -> String {
+        return "----WebKitFormBoundary\(String((0..<16).map{ _ in "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".randomElement()!}))"
+    }
+    /**
+     Parser to get application submit path, token and alert message
+     This is done by regex, but i would like replace it with soup parser
+     - Parameters:
+     - page : the html page
+     - getAlertMessage? : the last stage has an alert message, and this search
+     and retrieve that message
+     */
+    private static func parseReservationPage(page:String, getAlertMessage:Bool=false) -> Result<(path:String, token:String, alertMessage:String?)> {
+        
+        //Search/scrap submit path
+        guard let pathRange = page.range(of: "/aplicacion\\.php.*onsubmit", options: .regularExpression)
+            else {
+                return .failure(ReservationAPIError.pathUnparseable)
+        }
+        let path = String(page[pathRange].dropLast("' onsubmit".count))
+        
+        //Search/scrap token
+        guard let tokenRange = page.range(of: "id='cstoken'.*/>", options: .regularExpression)
+            else {
+                return .failure(ReservationAPIError.tokenUnparseable)
+        }
+        let token = String(page[tokenRange][page[tokenRange].range(of: "value='.*'", options: .regularExpression)!]
+            .dropFirst("value='".count)
+            .dropLast("'".count))
+        
+        var alertMessage:String? = nil
+        if getAlertMessage {
+            if let alertRange = page.range(of: "<script language='JavaScript'>alert\\(.*;</script></div>", options: .regularExpression){
+                let alert = page[alertRange]
+                if let idxL = alert.range(of: "alert('"),
+                    let idxU = alert.range(of: ");") {
+                    alertMessage = String(alert[idxL.upperBound..<idxU.lowerBound])
+                }
+                // else { return .failure(APIError.alertUnparseable) } ???
+            }
+        }
+        //<td class="ei-cuadro-fila 4">CONSUMIDO</td>
+        return .success((path, token, alertMessage))
+    }
+    
+    /**
+     Request builder for differents stages
+     - Parameters:
+     -  action : ReservationAction = (getLogin, doLogin, doProcess)
+     -  withPath : String = Path where it sends the form data
+     -  withToken : String = Token sended inside the form data (always)
+     - Returns: The request ready to use with dataTask
+     */
+    private static func buildRequest(_ action:ReservationAction, _ reservationLogin:ReservationLogin, withBoundary boundary:String="") -> URLRequest {
+        return buildRequest(action,
+                            withPath: reservationLogin.path,
+                            withToken: reservationLogin.token,
+                            withBoundary:boundary,
+                            withCode: reservationLogin.code,
+                            withCaptcha: reservationLogin.captchaText ?? "",
+                            withCookies: reservationLogin.cookies ?? [])
+    }
+    
+    private static func buildRequest(_ action:ReservationAction, withPath path:String = "/",
+                                     withToken token:String = "",
+                                     withBoundary boundary:String="",
+                                     withCode code:String="",
+                                     withCaptcha captcha:String="",
+                                     withCookies cookies:[CodableCookie]=[]) -> URLRequest {
+        
+        var infoRequest:(httpMethod: String, httpBody: String)
+        var headers = [
+            "cache-control": "no-cache"
+        ]
+        switch action {
+        case .getLogin:
+            infoRequest = ("GET","")
+        case .doLogin:
+            infoRequest = ("POST","--\(boundary)\nContent-Disposition: form-data; name=\"cstoken\"\n\n\(token)\n--\(boundary)\nContent-Disposition: form-data; name=\"form_2689_datos\"\n\n\("ingresar")\n--\(boundary)\nContent-Disposition: form-data; name=\"form_2689_datos_implicito\"\n\n\n--\(boundary)\nContent-Disposition: form-data; name=\"ef_form_2689_datosusuario\"\n\n\(code)\n--\(boundary)\nContent-Disposition: form-data; name=\"ef_form_2689_datoscontrol\"\n\n\(captcha)\n--\(boundary)--")
+        case .doReservation:
+            infoRequest = ("POST","--\(boundary)\nContent-Disposition: form-data; name=\"cstoken\"\n\n\(token)\n--\(boundary)\nContent-Disposition: form-data; name=\"ci_2695\"\n\n\("procesar")\n--\(boundary)\nContent-Disposition: form-data; name=\"ci_2695__param\"\n\n\("undefined")\n--\(boundary)--")
+        case .getReservation:
+            infoRequest = ("POST","--\(boundary)\nContent-Disposition: form-data; name=\"cstoken\"\n\n\(token)\n--\(boundary)\nContent-Disposition: form-data; name=\"ci_2695\"\n\n\("consu_rese")\n--\(boundary)\nContent-Disposition: form-data; name=\"ci_2695__param\"\n\n\("undefined")\n--\(boundary)--")
+        }
+        
+        var request = URLRequest(url: URL(string: UNCComedor.baseReservationURL + path)!)
+        if infoRequest.httpMethod == "POST" {
+            //TODO read meta header in response
+            request.httpBody = infoRequest.httpBody.data(using: .isoLatin1)
+            headers["Content-Type"] = "multipart/form-data; boundary=" + boundary
+        }
+        //mapea las codableCookies a cookies que no sean nil
+        let cookies = cookies.compactMap({ $0.toCookie() })
+        if !cookies.isEmpty {
+            headers.merge(HTTPCookie.requestHeaderFields(with: cookies)){ (_,new) in new }
+        }
+        request.httpMethod = infoRequest.httpMethod
+        request.allHTTPHeaderFields = headers
+        
+        return request
+    }
+
+    
+    // MARK: Public Reservation API's
+    
+    /**
+     First stage to get the reservation
+     of (code):String = Code of user
+     */
+    func getReservationLogin(of code: String, callback: @escaping (_ result: Result<ReservationLogin>) -> Void) {
         //Check empty-ness, maybe it's unnecesary
         guard !code.isEmpty else {
-            callback(.success(ReservationStatus.invalid))
+            callback(.failure(APIError.badResponse)) //TODO: Change this
             return
         }
         
-        //Boundary + Random 16 chars generator
+        let task = UNCComedor.restSession.dataTask(with: UNCComedor.buildRequest(.getLogin)){ data, res, error in
+            //Exit early
+            let httpError = UNCComedor.handleAPIResponse(error: error, res: res)
+            guard httpError == nil else {
+                callback(.failure(httpError!))
+                return
+            }
+            
+            guard let data = data,
+                let dataString = String(data: data, encoding: .isoLatin1) else {
+                    callback(.failure(APIError.dataDecodingError))
+                    return
+            }
+            
+            guard let res = res as? HTTPURLResponse else {
+                callback(.failure(APIError.badResponse))
+                return
+            }
+            
+            var cookies:[CodableCookie] = []
+            if let headers = res.allHeaderFields as? [String:String] {
+                let httpCookies = HTTPCookie.cookies(withResponseHeaderFields: headers, for: res.url!)
+                cookies = httpCookies.map({
+                    CodableCookie.fromCookie(cookie: $0)//🍪
+                })
+            }
+            
+            guard !cookies.isEmpty else {
+                callback(.failure(ReservationAPIError.cookiesEmpty))
+                return
+            }
+            
+            switch(UNCComedor.parseReservationPage(page: dataString)){
+            //Parsing error
+            case .failure(let parserError):
+                callback(.failure(parserError))
+                
+            //getLogin results succesfully
+            case .success(let (path,token,_)):
+                guard let captchaRange = dataString.range(of: "/aplicacion\\.php.*?ts=mostrar_captchas_efs.*?>", options: .regularExpression) else {
+                    callback(.failure(ReservationAPIError.captchaUnparseable))
+                    return
+                }
+                let captchaPath = String(dataString[captchaRange].dropLast(4))
+                let task = UNCComedor.restSession.dataTask(with: UNCComedor.buildRequest(.getLogin, withPath:captchaPath, withCookies:cookies)) {
+                    data, res, error in
+                    
+                    //Exit Early
+                    let httpError = UNCComedor.handleAPIResponse(error: error, res: res)
+                    guard httpError == nil else {
+                        callback(.failure(httpError!))
+                        return
+                    }
+                    guard let data = data else {
+                        callback(.failure(ReservationAPIError.captchaUnparseable)) //TODO: maybe this should never fire
+                        return
+                    }
+                    
+                    callback(.success(ReservationLogin(path:path, token:token, captchaText:nil, captchaImage:data, cookies:cookies, code:code)))
+                }
+                task.resume()
+                
+            }
+        }
+        task.resume()
+    }
+    
+    /**
+     Does the reservation login for now its used internally
+     takes the reservationLogin resolved from getLogin (and correct captcha)
+     */
+    public func doReservationLogin(with reservationLogin:ReservationLogin, callback: @escaping(_ result:Result<ReservationLogin>) -> Void){
+        
+        //Exit early
+        guard reservationLogin.captchaText != nil else {
+            callback(.failure(ReservationAPIError.captchaTextEmpty))
+            return
+        }
+        guard let cookies = reservationLogin.cookies else {
+            callback(.failure(ReservationAPIError.cookiesEmpty))
+            return
+        }
+        guard !cookies.filter({$0.name == "TOBA_SESSID"}).isEmpty else {
+            callback(.failure(ReservationAPIError.cookiesInvalid))
+            return
+        }
+        
+        //Generate a random boundary
         let boundary = UNCComedor.boundary()
         
-        //Starts succesive requests to do a reservation
-        //MARK: getLogin
-        //Stage 1, get Login page to obtain path and token
-        let task = session.dataTask(with: UNCComedor.buildRequest(.getLogin)){ data, res, error in
+        //Makes sure than will not reuse another session cookies
+        let task = UNCComedor.restSession.dataTask(with: UNCComedor.buildRequest(.doLogin, reservationLogin, withBoundary: boundary)){
+            data, res, error in
+            
             //Exit early
             let httpError = UNCComedor.handleAPIResponse(error: error, res: res)
             guard httpError == nil else {
@@ -721,20 +625,44 @@ class UNCComedor {
             }
             
             switch(UNCComedor.parseReservationPage(page: dataString)){
-            //Parsing error
+            //doLogin results (almost) succesfully
+            case .success(let (path,token,_)) where path.hasSuffix(UNCComedor.successLogin):
+                callback(.success(ReservationLogin(path: path, token: token, captchaText: nil, captchaImage: nil, cookies: reservationLogin.cookies, code: reservationLogin.code)))
+                return
+            
+            //Parsing error, analizar que tipo de error expiro la session ?
             case .failure(let parserError):
                 callback(.failure(parserError))
+            
+            default:
+                callback(.failure(ReservationAPIError.pathUnparseable))
+            }
+        }
+        task.resume()
+    }
+    
+    
+    /**
+     Do reservation (getStatus/doReservation)
+     Checks if path ends with 3616, this means that doReservationLogin was made before, and user is logged
+     
+     Flows :
+     - 1st enrty after getLogin -> nextPath == nil => doReservationLogin{ doReservation (status, nextPath) }
+     - 2nd entry after 1st entr -> nextPath != nil => doReservation (status, nextPath)
+     
+     */
+    func doReservation(withAction action:ReservationAction, reservationLogin:ReservationLogin,
+                       callback: @escaping (_ result:Result<ReservationStatus>) -> Void){
+        
+        let doReservationClosure:(ReservationLogin) -> Void = { reservationLogin in
+            switch action {
                 
-            //getLogin results succesfully
-            case .success(let (path,token,_)):
-                // TODO: Now Firtstly we have to complete the parsing this maybe possible with and ocr ?
-                //MARK: doLogin
-                //Stage 2 do Login with path, token and provided user code
-                let task = self.session.dataTask(with:
-                UNCComedor.buildRequest(.doLogin, withPath: path, withToken: token, withBoundary: boundary, withCode: code)){
+            case .doReservation:
+                let task = UNCComedor.restSession.dataTask(with:
+                UNCComedor.buildRequest(.doReservation, reservationLogin, withBoundary: UNCComedor.boundary())){
                     data, res, error in
-                                                
-                    //Exit early
+                    
+                    //Exit early, Here maybe the server is down so cookies are no longer valid ...
                     let httpError = UNCComedor.handleAPIResponse(error: error, res: res)
                     guard httpError == nil else {
                         callback(.failure(httpError!))
@@ -747,60 +675,63 @@ class UNCComedor {
                             return
                     }
                     
-                    switch(UNCComedor.parseReservationPage(page: dataString)){
-                    //Parsing error
-                    case .failure(let parserError):
-                        callback(.failure(parserError))
+                    //Parse and get the alertmessage if it's present
+                    /*
+                     May have 2 errors :
+                     - Session expires (tokenUnparseable? luckly)
+                     - incorrectPath (throws alertMessage = nil)
+                     */
+                    switch(UNCComedor.parseReservationPage(page: dataString, getAlertMessage: true)){
                         
-                    //doLogin results (almost) succesfully
-                    case .success(let (path,token,_)):
-                        
-                        //MARK: doProcess
-                        //Stage 3 do Process with path, token
-                        let task = self.session.dataTask(with:
-                            UNCComedor.buildRequest(.doReservation, withPath: path, withToken: token, withBoundary: boundary, withCode: code)){
-                                data, res, error in
-                                                        
-                                //Exit early
-                                let httpError = UNCComedor.handleAPIResponse(error: error, res: res)
-                                guard httpError == nil else {
-                                    callback(.failure(httpError!))
-                                    return
-                                }
-                                
-                                guard let data = data,
-                                    let dataString = String(data: data, encoding: .isoLatin1) else {
-                                        callback(.failure(APIError.dataDecodingError))
-                                        return
-                                }
-                                //parse and get the alertmessage if it's present
-                                switch(UNCComedor.parseReservationPage(page: dataString, getAlertMessage: true)){
-                                //Parsing error
-                                case .failure(let parserError):
-                                    callback(.failure(parserError))
-                                    
-                                //doProcess results (almost) succesfully
-                                case .success(let (_,_,alert?)):
-                                    print(alert)
-                                    if alert.contains("SE REALIZO LA RESERVA CON") {
-                                        callback(.success(.reserved))
-                                    } else if alert.contains("NO HAY MAS RESERVAS DISPONIBLES") {
-                                        callback(.success(.soldout))
-                                    } else {
-                                        callback(.success(.unavailable))
-                                    }
-                                    
-                                case .success(_,_,nil):
-                                    callback(.success(.invalid))
-                                }
+                    //doProcess results (almost) succesfully
+                    case .success(let (path,token,alert?)):
+                        //NSLog(alert)
+                        let result:ReservationResult
+                        if alert.contains("SE REALIZO LA RESERVA") {
+                            result = .reserved
+                        } else if alert.contains("NO HAY MAS RESERVAS DISPONIBLES") {
+                            result = .soldout
+                        } else {
+                            result = .unavailable
                         }
-                        task.resume()
+                        callback(.success(ReservationStatus(reservationResult:result, path:path,
+                                                            token: reservationLogin.token != token ? token : nil)))
+                        
+                    case .success(let path,_,nil) where path.hasSuffix(UNCComedor.successLogin):
+                        print(dataString)
+                        callback(.success(ReservationStatus(reservationResult:.invalid, path:path, token:nil)))
+                        
+                    default: //case .failure(_): //This is pathUnparseable or tokenUnparseable
+                        callback(.success(ReservationStatus(reservationResult:.redoLogin, path:nil, token:nil))) //callback(.failure(parserError))
                     }
                 }
                 task.resume()
+                
+                //Get reservation
+                //case .getReservation:
+                
+            default :
+                callback(.failure(ReservationAPIError.unimplementedFunction))
             }
         }
-        task.resume()
+        
+        //If path is updated inside the profile panel
+        if reservationLogin.path.hasSuffix(UNCComedor.successLogin) {
+            doReservationClosure(reservationLogin)
+        } else {
+            doReservationLogin(with: reservationLogin){
+                result in
+                switch result {
+                case let .success(reservationLogin):
+                    doReservationClosure(reservationLogin)
+                case .failure(let error) where error is ReservationAPIError : //Session expires (done by tokenUnparseable), captcha could change or empty cookie
+                    callback(.success(ReservationStatus(reservationResult:.redoLogin, path:nil, token: nil)))
+                case .failure(let error):
+                    callback(.failure(error))
+                }
+            }
+        }
     }
     
 }
+

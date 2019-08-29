@@ -1,7 +1,8 @@
 import Foundation
 
+// MARK: ReservationLogin Model
+
 struct ReservationLogin : Codable {
-    //The image path of captcha also needs session info, so instead sending cookies...
     let path:String
     let token:String
     let captchaText:String?
@@ -33,7 +34,15 @@ struct CodableCookie : Codable {
     }
 }
 
-enum ReservationStatus : String, Codable {
+// MARK: Reservation Status Model
+
+struct ReservationStatus : Codable {
+    let reservationResult:ReservationResult?
+    let path:String?  //Found that "doLogin" re-sending nextPath is unnecesary
+    let token:String? //Also token changes
+}
+
+enum ReservationResult : String, Codable {
     case reserved
     case unavailable
     case soldout
@@ -42,10 +51,6 @@ enum ReservationStatus : String, Codable {
     
     //this is to complain kitura 's test
     case empty = ""
-}
-
-struct ReservationStatusWrapper : Codable {
-    let reservationStatus:ReservationStatus?
 }
 
 // MARK: Reservation actions
@@ -57,29 +62,3 @@ enum ReservationAction {
     case doReservation
     //case doCancel ?
 }
-
-/**
- <NSHTTPCookie
- version:0
- name:TOBA_SESSID
- value:qgajrl7v86l3jij00jj1dia4l2
- expiresDate:'(null)'
- created:'2019-08-22 05:45:09 +0000'
- sessionOnly:TRUE
- domain:comedor.unc.edu.ar
- partition:none
- path:/
- isSecure:FALSE
- path:"/" isSecure:FALSE>, <NSHTTPCookie
- version:0
- name:serverid
- value:server_3|XV4r6|XV4r6
- expiresDate:'(null)'
- created:'2019-08-22 05:45:09 +0000'
- sessionOnly:TRUE
- domain:.unc.edu.ar
- partition:none
- path:/
- isSecure:FALSE
- path:"/" isSecure:FALSE>]
-*/
