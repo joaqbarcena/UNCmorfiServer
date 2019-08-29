@@ -651,10 +651,10 @@ extension UNCComedor {
      - 2nd entry after 1st entr -> nextPath != nil => doReservation (status, nextPath)
      
      */
-    func doReservation(withAction action:ReservationAction, reservationLogin:ReservationLogin, sendToken:Bool=false
+    func doReservation(withAction action:ReservationAction, reservationLogin:ReservationLogin,
                        callback: @escaping (_ result:Result<ReservationStatus>) -> Void){
         
-        let doReservationClosure:(ReservationLogin) -> Void = { reservationLogin in
+        let doReservationClosure:(ReservationLogin, Bool) -> Void = { reservationLogin, sendToken in
             switch action {
                 
             case .doReservation:
@@ -717,13 +717,13 @@ extension UNCComedor {
         
         //If path is updated inside the profile panel
         if reservationLogin.path.hasSuffix(UNCComedor.successLogin) {
-            doReservationClosure(reservationLogin)
+            doReservationClosure(reservationLogin,false)
         } else {
             doReservationLogin(with: reservationLogin){
                 result in
                 switch result {
                 case let .success(reservationLogin):
-                    doReservationClosure(reservationLogin, sendToken:true)
+                    doReservationClosure(reservationLogin,true)
                 case .failure(let error) where error is ReservationAPIError : //Session expires (done by tokenUnparseable), captcha could change or empty cookie
                     callback(.success(ReservationStatus(reservationResult:.redoLogin, path:nil, token: nil)))
                 case .failure(let error):
