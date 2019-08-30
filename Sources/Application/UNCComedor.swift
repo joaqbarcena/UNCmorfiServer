@@ -682,7 +682,10 @@ extension UNCComedor {
                      - incorrectPath (throws alertMessage = nil)
                      */
                     switch(UNCComedor.parseReservationPage(page: dataString, getAlertMessage: true)){
-                        
+                    //A way to note if its reserved
+                    case let .success(path,token,_) where dataString.range(of: "consu_rese") != nil:
+                        callback(.success(ReservationStatus(reservationResult:.reserved, path:path,
+                                                            token: reservationLogin.token != token || sendToken ? token : nil)))
                     //doProcess results (almost) succesfully
                     case .success(let (path,token,alert?)):
                         //NSLog(alert)
@@ -698,10 +701,10 @@ extension UNCComedor {
                                                             token: reservationLogin.token != token || sendToken ? token : nil)))
                         
                     case .success(let (path, token, nil)) where path.hasSuffix(UNCComedor.successLogin):
-                        print(dataString)
                         callback(.success(ReservationStatus(reservationResult:.invalid, path:path, token: sendToken ? token : nil)))
                         
                     default: //case .failure(_): //This is pathUnparseable or tokenUnparseable
+                        NSLog(dataString)
                         callback(.success(ReservationStatus(reservationResult:.redoLogin, path:nil, token:nil))) //callback(.failure(parserError))
                     }
                 }
