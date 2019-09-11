@@ -479,7 +479,7 @@ extension UNCComedor {
         case .getLogin:
             infoRequest = ("GET","")
         case .doLogin:
-            infoRequest = ("POST","--\(boundary)\nContent-Disposition: form-data; name=\"cstoken\"\n\n\(token)\n--\(boundary)\nContent-Disposition: form-data; name=\"form_2689_datos\"\n\n\("ingresar")\n--\(boundary)\nContent-Disposition: form-data; name=\"form_2689_datos_implicito\"\n\n\n--\(boundary)\nContent-Disposition: form-data; name=\"ef_form_2689_datosusuario\"\n\n\(code)\n--\(boundary)\nContent-Disposition: form-data; name=\"ef_form_2689_datoscontrol\"\n\n\(captcha)\n--\(boundary)--")
+            infoRequest = ("POST","--\(boundary)\nContent-Disposition: form-data; name=\"cstoken\"\n\n\(token)\n--\(boundary)\nContent-Disposition: form-data; name=\"form_2689_datos\"\n\n\("ingresar")\n--\(boundary)\nContent-Disposition: form-data; name=\"form_2689_datos_implicito\"\n\n\n--\(boundary)\nContent-Disposition: form-data; name=\"ef_form_2689_datosusuario\"\n\n\(code)\n--\(boundary)\nContent-Disposition: form-data; name=\"g-recaptcha-response\"\n\n\(captcha)\n--\(boundary)--")
         case .doReservation:
             infoRequest = ("POST","--\(boundary)\nContent-Disposition: form-data; name=\"cstoken\"\n\n\(token)\n--\(boundary)\nContent-Disposition: form-data; name=\"ci_2695\"\n\n\("procesar")\n--\(boundary)\nContent-Disposition: form-data; name=\"ci_2695__param\"\n\n\("undefined")\n--\(boundary)--")
         case .getReservation:
@@ -557,7 +557,7 @@ extension UNCComedor {
             //getLogin results succesfully
             case .success(let (path,token,_)):
                 guard let captchaRange = dataString.range(of: "/aplicacion\\.php.*?ts=mostrar_captchas_efs.*?>", options: .regularExpression) else {
-                    callback(.failure(ReservationAPIError.captchaUnparseable))
+                    callback(.success(ReservationLogin(path:path, token:token, captchaText:nil, captchaImage:nil, cookies:cookies, code:code)))
                     return
                 }
                 let captchaPath = String(dataString[captchaRange].dropLast(4))
