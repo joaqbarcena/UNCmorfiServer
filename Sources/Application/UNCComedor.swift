@@ -368,7 +368,7 @@ class UNCComedor {
 extension UNCComedor {
     
     private static let successLogin = "3616" //3614 es que esta todo mal
-    private static let baseReservationURL = "http://comedor.unc.edu.ar/reserva"
+    private static let baseReservationURL = "https://comedor.unc.edu.ar/reserva"
     
     //Sesssion that doesnt persist cookies, so they are saved at real end-client
     private static let restSession:URLSession = {
