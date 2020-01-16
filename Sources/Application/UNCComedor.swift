@@ -376,6 +376,8 @@ extension UNCComedor {
         defaultRestConfig.httpCookieAcceptPolicy = .never
         defaultRestConfig.httpCookieStorage = nil
         defaultRestConfig.httpShouldSetCookies = true
+        defaultRestConfig.timeoutIntervalForResource = TimeInterval(exactly: 60.0)
+        defaultRestConfig.timeoutIntervalForRequest = TimeInterval(exactly: 40.0)
         return URLSession(configuration: defaultRestConfig)
     }()
     
@@ -683,7 +685,7 @@ extension UNCComedor {
                      */
                     switch(UNCComedor.parseReservationPage(page: dataString, getAlertMessage: true)){
                     //A way to note if its reserved
-                    case let .success(path,token,_) where dataString.range(of: "consu_rese") != nil:
+                    case let .success(path,token,_) where dataString.range(of: "cance_rese") != nil:
                         callback(.success(ReservationStatus(reservationResult:.reserved, path:path,
                                                             token: reservationLogin.token != token || sendToken ? token : nil)))
                     //doProcess results (almost) succesfully
@@ -719,6 +721,7 @@ extension UNCComedor {
         }
         
         //If path is updated inside the profile panel
+        //This means that user is already logged-in (or it seems)
         if reservationLogin.path.hasSuffix(UNCComedor.successLogin) {
             doReservationClosure(reservationLogin,false)
         } else {
